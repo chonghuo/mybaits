@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<!-- 为指定包中的所有类起别名,别名为其简单类名 -->
+		<package name="com.bjpwernode.beans" />
+	</typeAliases>
+	<environments default="development">
+		<environment id="development">
+			<!-- transactionManager的type属性取值有两个： JDBC： 底层使用conn.setAutoCommit(false)将自动提交功能关闭，代码需要使用 
+				conn.commit()将执行的SQL提交到DB MANAGED：将事务交由容器来管理（Spring容器） -->
+			<transactionManager type="JDBC" />
+			<!-- dataSource的type属性取值： UNPOOLED：不使用连接池。每次请求都会创建一个DB连接，使用完毕马上关闭该连接。执行效率低。 
+				POOLED：使用数据库连接池维护连接 JNDI：通过JNDI这个第三方的外部容器获取DB连接 -->
+			<dataSource type="POOLED">
+				<property name="driver" value="com.mysql.jdbc.Driver" />
+				<property name="url" value="jdbc:mysql://localhost:3306/test?useUnicode=true&amp;characterEncoding=utf8" />
+				<property name="username" value="root" />
+				<property name="password" value="root" />
+			</dataSource>
+	    </environment>
+	</environments>
+
+    <!-- 注册映射文件 -->	
+    <mappers>
+    	<mapper resource="com/bjpwernode/dao/mapper.xml"/>
+    </mappers>
+
+</configuration>
