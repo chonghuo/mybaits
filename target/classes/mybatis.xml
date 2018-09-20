@@ -27,7 +27,9 @@
 
     <!-- 注册映射文件 -->	
     <mappers>
-    	<mapper resource="com/bjpowernode/dao/mapper.xml"/>
+    	<!-- <mapper resource="com/bjpowernode/dao/mapper.xml"/> -->
+    	
+    	<package name="com.bjpowernode.dao"/>
     </mappers>
 
 </configuration>

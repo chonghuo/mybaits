@@ -1,17 +1,25 @@
 package com.bjpowernode.test;
 
+import java.io.IOException;
 import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
 
 import com.bjpowernode.beans.Student;
 import com.bjpowernode.dao.StudentDao;
+import com.bjpowernode.utils.MyBatisUtils;
 
 public class MyView {
 
 	private StudentDao dao;
+	private SqlSession session;
 
-	public  void test01() {
+	public  void test01() throws IOException {
+		session = MyBatisUtils.getSqlSession();
+		dao= session.getMapper(StudentDao.class);
 		Student student = new Student("张三", 23);
 		dao.insertStudent(student);
+		session.commit();
 	}
 	
 	public  void test02() {
