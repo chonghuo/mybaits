@@ -4,30 +4,125 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bjpowernode.dao.StudentDao">
-	<insert id="insertStudent">
-		insert into student(tname,age) values(#{name},#{age})
-	</insert>
-	
-	<delete id="deleteById">
-		delete from student where tid = #{id}
-	</delete>
-	
-	<update id="updateStudent">
-		update student set tname = #{name},age = #{age} where tid = #{id}
-	</update>
-	
-	<resultMap type="Student" id="studentMap">
-		<id  column="tid" property="id" />
-		<result column="tname" property="name"/>
-	
-	</resultMap>
-	
-	<select id="selectAllStudents" resultMap="studentMap">
-		select tid ,tname ,age from student 
-	</select>
-	
-	<select id="selectStudentById" resultMap="studentMap">
-		select tid ,tname ,age from student where tid = #{id}
-	</select>
-  
+		
+		<select id="selectStudentsByIf" resultType="Student">
+			select id,name,age from student 
+			    where 1=1 
+			<if test="pname !=null and pname != '' ">
+			    and name like  '%' #{pname} '%'
+			</if> 
+			<if test=" page > 0 ">
+			    and age &lt; #{page}
+			</if>
+		</select>
+		
+		
+		<select id="selectStudentsByWhere" resultType="Student">
+			select id,name,age from student 
+			<where>
+				<if test=" pname !=null and pname != '' ">
+					and name like '%' #{pname} '%'
+				</if>
+				<if test=" page > 0 ">
+				    and age &lt; #{page}
+				</if>
+			</where>
+		</select>
+		
+		<select id="selectStudentsByChoose" resultType="Student">
+		     select id ,name ,age from student 
+		   <where>
+		     <choose>
+		     	<when test="pname !=null and pname !='' ">
+		     	     and name like '%' #{pname} '%'
+		     	</when>
+		     	<when test="page > 0 ">
+		     	     and age &lt; #{page}
+		     	</when>
+		     	<otherwise>
+		     	
+		     	     and 1!=1
+		     	</otherwise>
+		     
+		     
+		     </choose>
+		   </where>
+		</select>
+		
+		<select id="selectStudentsByForeach" resultType="Student">
+			select id,name,age from student
+			
+			<if test=" array !=null and array.length > 0">
+				<where>
+						id in 
+					<foreach collection="array" open="(" close=")" separator="," item="myid">
+						#{myid}
+					</foreach>				
+				</where>			
+			</if>
+		</select>
+		
+		
+		<select id="selectStudentsByForeach2" resultType="Student">
+			select id,name,age from student 
+			<if test="list !=null and list.size>0">
+			    <where>
+			         id in 
+			         <foreach collection="list" open="(" close=")" separator="," item="ids">
+						#{ids}			         
+			         </foreach>
+			    </where>
+			</if>
+		
+		</select>
+		
+		<select id="selectStudentsByForeach3" resultType="Student">
+			select id,name,age from student 
+			<if test="list !=null and list.size>0 ">
+				<where>
+					id in 
+					<foreach collection="list" open="(" close=")" separator="," item="stus">
+						#{stus.id}
+					</foreach>
+				</where>
+			</if>
+		
+		</select>
+		
+		
+		<select id="selectStudentsBySql" resultType="Student">
+			<include refid="studentHead"/>
+ 			<if test="list != null and list.size > 0 ">
+ 				<where>
+ 					id in 
+ 					<foreach collection="list" open="(" close=")" separator="," item="stus">
+ 						#{stus.id}
+ 					</foreach>
+ 				</where>
+ 			</if>		
+		</select>
+		
+		<select id="selectStudentsBySql2" resultType="Student">
+			select <include refid="studentColunms"/> from student
+			<if test="list !=null and list.size > 0 ">
+				<where>
+					id in 
+					<foreach collection="list" open="(" close=")" separator="," item="stus">
+						#{stus.id}					
+					</foreach>				
+				</where>
+			</if>
+		
+		</select>
+		
+		
+		 <!-- 定义sql片段 -->
+		<sql id="studentHead">
+			select id,name,age from student
+		</sql>
+		
+		<sql id="studentColunms">
+		    id,name,age
+		</sql>
+	  
 </mapper>

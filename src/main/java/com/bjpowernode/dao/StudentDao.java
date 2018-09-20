@@ -7,16 +7,19 @@ import com.bjpowernode.beans.Student;
 
 public interface StudentDao {
 	
-	void insertStudent(Student student);
-	void insertStudentCatchId(Student student);
-	void deleteById(int id);
-	void updateStudent(Student student);
-	List<Student> selectAllStudents();
-	Student selectStudentById(Integer id);
-	List<Student> selectStudnetByName(String name);
-	List<Student> selectStudnetByNameAndAge(Student student);
-	List<Student> selectStudentsByCondition(Map<String,Object> map);
-	List<Student> selectStudentsByCondition2(Map<String,Object> map);
+	List<Student> selectStudentsByIf(Map<String,Object> map);
 	
+	List<Student> selectStudentsByWhere(Map<String,Object> map);
+	
+	List<Student> selectStudentsByChoose(Map<String,Object> map);
+	
+	List<Student> selectStudentsByForeach(int[] ids);
+	
+	List<Student> selectStudentsByForeach2(List<Integer> idList);
+	
+	List<Student> selectStudentsByForeach3(List<Student> stus);
+	
+	List<Student> selectStudentsBySql(List<Student> stus);
 
+	List<Student> selectStudentsBySql2(List<Student> stus);
 }
