@@ -16,12 +16,18 @@
 		update student set tname = #{name},age = #{age} where tid = #{id}
 	</update>
 	
-	<select id="selectAllStudents" resultType="Student">
-		select tid id,tname name,age from student 
+	<resultMap type="Student" id="studentMap">
+		<id  column="tid" property="id" />
+		<result column="tname" property="name"/>
+	
+	</resultMap>
+	
+	<select id="selectAllStudents" resultMap="studentMap">
+		select tid ,tname ,age from student 
 	</select>
 	
-	<select id="selectStudentById" resultType="Student">
-		select tid id,tname name,age from student where tid = #{id}
+	<select id="selectStudentById" resultMap="studentMap">
+		select tid ,tname ,age from student where tid = #{id}
 	</select>
   
 </mapper>

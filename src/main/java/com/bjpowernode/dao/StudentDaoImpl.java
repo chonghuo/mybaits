@@ -35,7 +35,7 @@ public class StudentDaoImpl implements StudentDao{
 			// 1.创建SQL session对象
 			session = MyBatisUtils.getSqlSession();
 			// 2. 操作
-			session.insert("deleteById", id);     
+			session.delete("deleteById", id);     
 			// 3. 提交
 			session.commit();
 		}catch(IOException e) {
@@ -54,7 +54,7 @@ public class StudentDaoImpl implements StudentDao{
 			// 1.创建SQL session对象
 			session = MyBatisUtils.getSqlSession();
 			// 2. 操作
-			session.insert("updateStudent", student);     
+			session.update("updateStudent", student);  
 			// 3. 提交
 			session.commit();
 		}catch(IOException e) {
