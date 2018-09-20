@@ -29,73 +29,34 @@ public class MyTest {
 	public void after() {
 		System.out.println("=============================================================================");
 	}
-    @Test
+	
+	@Test
 	public  void test01() {
-		Student student = new Student("韩璐", 23);
-		System.out.println(student);
+		Student student = new Student("袁鹏", 23);
 		dao.insertStudent(student);
-		System.out.println(student);
 	}
-	@Test
+    @Test	
 	public  void test02() {
-		dao.deleteById(17);
+		dao.deleteById(20);
 	}
-	@Test
-	public void test03() {
-		SimpleDateFormat sdf =new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String currentDate = sdf.format(new Date());
-		System.out.println(currentDate);
-		Student student = new Student("赵六", 25);
-		student.setId(20);
+    @Test
+    public void test03() {
+		Student student = new Student("孤军", 25);
+		student.setId(21);
 		dao.updateStudent(student);
 	}
-	@Test
-	public  void test04() {
-		Student student = new Student("高峰", 24);
-		System.out.println(student);
-		dao.insertStudentCatchId(student);
-		System.out.println(student);
-	}
-	@Test
-	public void test05() {
+    
+    @Test
+    public void test05() {
 		List<Student> stuList = dao.selectAllStudents();
 		System.out.println(stuList);
 	}
-	@Test
-	public void test06() {
+    @Test
+    public void test06() {
 		Student student = dao.selectStudentById(24);
 		System.out.println(student);
 	}
-	@Test
-	public void test07() {
-		List<Student> stuList = dao.selectStudnetByName("张");
-		System.out.println(stuList);
-	}
-    @Test	
-	public void test08() {
-		Student student = new Student("张",27);
-		List<Student> studList = dao.selectStudnetByNameAndAge(student);
-	    System.out.println(studList);
-	}
-    @Test
-    public void test09() {
-		Map<String,Object> map = new HashMap<String,Object>();
-		map.put("name", "张");
-		map.put("ageTop", 27);
-		map.put("ageLow", 23);
-		List<Student> studList = dao.selectStudentsByCondition(map);
-	    System.out.println(studList);
-	}
-    @Test
-    public void test10() {
-		Student stu = new Student("张",23);
-		Student stu2 = new Student(null,27);
-		Map<String,Object> map = new HashMap<>();
-		map.put("mystu", stu);
-		map.put("mystu2", stu2);
-		List<Student> stuList = dao.selectStudentsByCondition2(map);
-		System.out.println(stuList);
-	}
+
 
 
 
