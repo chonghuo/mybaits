@@ -12,7 +12,7 @@ public class MyBatisUtils {
 	
 	private static SqlSessionFactory  factory;
     
-	
+	//工具类中方法的异常要抛出,不能try-catch
 	public static SqlSession getSqlSession() throws IOException{
 		
 		if(factory == null) {
