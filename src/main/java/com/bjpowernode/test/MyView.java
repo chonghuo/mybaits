@@ -1,8 +1,8 @@
-package com.bjpwernode.test;
+package com.bjpowernode.test;
 
-import com.bjpwernode.beans.Student;
-import com.bjpwernode.service.StudentService;
-import com.bjpwernode.service.StudentServiceImpl;
+import com.bjpowernode.beans.Student;
+import com.bjpowernode.service.StudentService;
+import com.bjpowernode.service.StudentServiceImpl;
 
 public class MyView {
 

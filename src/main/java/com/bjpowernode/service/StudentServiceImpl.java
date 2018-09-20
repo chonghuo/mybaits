@@ -1,8 +1,8 @@
-package com.bjpwernode.service;
+package com.bjpowernode.service;
 
-import com.bjpwernode.beans.Student;
-import com.bjpwernode.dao.StudentDao;
-import com.bjpwernode.dao.StudentDaoImpl;
+import com.bjpowernode.beans.Student;
+import com.bjpowernode.dao.StudentDao;
+import com.bjpowernode.dao.StudentDaoImpl;
 
 public class StudentServiceImpl implements StudentService {
 	private StudentDao dao = new StudentDaoImpl();

@@ -1,4 +1,4 @@
-package com.bjpwernode.beans;
+package com.bjpowernode.beans;
 
 import lombok.Data;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package com.bjpwernode.dao;
+package com.bjpowernode.dao;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,7 +8,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import com.bjpwernode.beans.Student;
+import com.bjpowernode.beans.Student;
+import com.bjpowernode.utils.MyBatisUtils;
 
 public class StudentDaoImpl implements StudentDao{
 	
@@ -17,16 +18,12 @@ public class StudentDaoImpl implements StudentDao{
 	@Override
 	public void insertStudent(Student student) {
 		try {
-			// 1. 加载主配置文件
-			InputStream inputStream = Resources.getResourceAsStream("mybatis.xml");
-			// 2. 创建SqlSessionFactory对象
-			SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(inputStream);
-			// 3. 创建SqlSession对象
-			session = factory.openSession();//dirty false
-			// 4. 操作
-			session.insert("xxx.insertStu", student);     //dirty  true
-			// 5. 提交
-			session.commit();// dirty false
+			// 1.创建SQL session对象
+			session = MyBatisUtils.getSqlSession();
+			// 2. 操作
+			session.insert("xxx.insertStu", student);     
+			// 3. 提交
+			session.commit();
 		}catch(IOException e) {
 			e.printStackTrace();
 		}finally {

@@ -1,6 +1,6 @@
-package com.bjpwernode.dao;
+package com.bjpowernode.dao;
 
-import com.bjpwernode.beans.Student;
+import com.bjpowernode.beans.Student;
 
 public interface StudentDao {
 	
